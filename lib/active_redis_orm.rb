@@ -1,3 +1,8 @@
+require "active_support/all"
+require "redis"
+require "active_model"
+require "redis-objects"
+require "active_redis/base_extensions"
 require "active_redis/attributes"
 require "active_redis/save"
 require "active_redis/dirty_attributes"
