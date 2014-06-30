@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'active_redis_orm/version'
+require 'active_redis/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "active_redis_orm"
