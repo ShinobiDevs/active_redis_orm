@@ -5,7 +5,7 @@ require 'active_redis/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "active_redis_orm"
-  spec.version       = ActiveRedisOrm::VERSION
+  spec.version       = ActiveRedis::VERSION
   spec.authors       = ["Tom Caspy"]
   spec.email         = ["tom@tikalk.com"]
   spec.summary       = %q{ActiveRedis is an ORM for redis written in Ruby.}
