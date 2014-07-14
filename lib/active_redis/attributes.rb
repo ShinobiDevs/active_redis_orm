@@ -31,11 +31,11 @@ module ActiveRedis
 
   module Attributes
     def attr_accessible(*attrs)
-      @attr_accessible = attrs
+      @attr_accessible = attrs.map(&:to_sym)
     end
 
     def attr_accessible?(attr)
-      @attr_accessible.nil? || @attr_accessible.include?(attr)
+      @attr_accessible.nil? || @attr_accessible.include?(attr.to_sym)
     end
 
     def define_field(field_name, options)
