@@ -98,11 +98,17 @@ module ActiveRedis
 
         def #{field_name}=(value)
           #{field_name}_will_change!
+          value = ActiveRedis::NilObject.new if value.nil?
           @attributes[:#{field_name}] = value
         end
 
         def set_#{field_name}(value)
-          #{field_name}_object.value = value.last
+          val = value.last
+          if val.nil?
+            destroy_#{field_name}
+          else
+            #{field_name}_object.value = val
+          end
           after_set(:#{field_name})
         end
       }
@@ -123,11 +129,20 @@ module ActiveRedis
 
         def #{field_name}=(value)
           #{field_name}_will_change!
-          @attributes[:#{field_name}] = value.to_i
+          if value.nil?
+            @attributes[:#{field_name}] = ActiveRedis::NilObject.new
+          else
+            @attributes[:#{field_name}] = value.to_i
+          end
         end
 
         def set_#{field_name}(value)
-          #{field_name}_object.value = value.last.to_i
+          val = value.last
+          if val.nil?
+            destroy_#{field_name}
+          else
+            #{field_name}_object.value = val.to_i
+          end
           after_set(:#{field_name})
         end
       }
@@ -148,11 +163,20 @@ module ActiveRedis
 
         def #{field_name}=(value)
           #{field_name}_will_change!
-          @attributes[:#{field_name}] = value.to_f
+          if value.nil?
+            @attributes[:#{field_name}] = ActiveRedis::NilObject.new
+          else
+            @attributes[:#{field_name}] = value.to_f
+          end
         end
 
         def set_#{field_name}(value)
-          #{field_name}_object.value = value.last.to_f
+          val = value.last
+          if val.nil?
+            destroy_#{field_name}
+          else
+            #{field_name}_object.value = val.to_f
+          end
           after_set(:#{field_name})
         end
       }

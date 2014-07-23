@@ -11,6 +11,7 @@ require "active_redis/dirty_objects/hash"
 require "active_redis/dirty_objects/sorted_set"
 require "active_redis/all_list"
 require "active_redis/timestamps"
+require "active_redis/nil_object"
 
 module ActiveRedis
   mattr_accessor :redis

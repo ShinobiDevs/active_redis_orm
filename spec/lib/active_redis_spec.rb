@@ -157,6 +157,16 @@ describe ActiveRedis do
       object.sorted_set.should == ["hola", "goofy"]
     end
 
+    it "removes the field if it's set to nil" do
+      object = ActiveRedisObject.new
+      object.foo = "foo"
+      object.save
+      object.foo = nil
+      object.save
+      object.reload!
+      object.foo.should == nil
+    end
+
     it "tracks changes well" do
       object = ActiveRedisObject.new
       object.hash = {}
