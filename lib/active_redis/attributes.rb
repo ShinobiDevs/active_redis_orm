@@ -319,10 +319,10 @@ module ActiveRedis
         def set_#{field_name}(value)
           changes = value.first.last
           changes[:additions].each do |addition|
-            #{field_name}_object[changes[:hash].key(addition)] = addition
+            self.#{field_name}_object[addition] = changes[:hash].key(addition)
           end
           changes[:drops].each do |drop|
-            #{field_name}_object.delete(drop)
+            self.#{field_name}_object.delete(drop)
           end
           after_set(:#{field_name})
         end

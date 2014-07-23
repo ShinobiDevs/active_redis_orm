@@ -148,6 +148,15 @@ describe ActiveRedis do
       object.hash.should == {"foo" => "bar"}
     end
 
+    it "saves sorted sets correctly" do
+      object = ActiveRedisObject.new
+      object.sorted_set["goofy"] = 2
+      object.sorted_set["hola"] = 1
+      object.save
+      object.reload!
+      object.sorted_set.should == ["hola", "goofy"]
+    end
+
     it "tracks changes well" do
       object = ActiveRedisObject.new
       object.hash = {}
